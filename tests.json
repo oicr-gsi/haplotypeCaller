@@ -1,0 +1,168 @@
+{
+  "defaults": {
+    "description": "GATKHaplotypeCaller workflow test",
+    "input_config_dir": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_config/",
+    "metrics_calculate": "calculate.sh",
+    "metrics_compare": "compare.sh",
+    "output_metrics_dir": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/output_expectation/",
+    "parameters": {
+      "wdl_options": {
+        "read_from_cache": false,
+        "write_to_cache": false
+      }
+    }
+  },
+  "tests": [
+    {
+      "id": "EX_HC_no_intervals",
+      "parameters": {
+        "wdl_inputs": {
+          "haplotype.bamIndices": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bai"
+          ],
+          "haplotype.bams": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bam"
+          ],
+          "haplotype.dbsnpFilePath": "$HG19_DBSNP_ROOT/dbsnp_137.hg19.vcf",
+          "haplotype.outputFileNamePrefix": "",
+          "haplotype.referenceChromosomeSizes": "$HG19_ROOT/hg19.chrom.sizes.bed",
+          "haplotype.referenceModule": "hg19/p13",
+          "haplotype.referenceSequence": "$HG19_ROOT/hg19_random.fa"
+        }
+      }
+    },
+    {
+      "id": "EX_HC",
+      "parameters": {
+        "wdl_inputs": {
+          "haplotype.bamIndices": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bai"
+          ],
+          "haplotype.bams": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bam"
+          ],
+          "haplotype.dbsnpFilePath": "$HG19_DBSNP_ROOT/dbsnp_137.hg19.vcf",
+          "haplotype.filterIntervals": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/PCSI0022.val.bed",
+          "haplotype.outputFileNamePrefix": "",
+          "haplotype.referenceChromosomeSizes": "$HG19_ROOT/hg19.chrom.sizes.bed",
+          "haplotype.referenceModule": "hg19/p13",
+          "haplotype.referenceSequence": "$HG19_ROOT/hg19_random.fa"
+        }
+      }
+    },
+    {
+      "id": "EX_HC_no_parallelism",
+      "parameters": {
+        "wdl_inputs": {
+          "haplotype.bamIndices": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bai"
+          ],
+          "haplotype.bams": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bam"
+          ],
+          "haplotype.dbsnpFilePath": "$HG19_DBSNP_ROOT/dbsnp_137.hg19.vcf",
+          "haplotype.filterIntervals": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/PCSI0022.val.bed",
+          "haplotype.outputFileNamePrefix": "",
+          "haplotype.referenceChromosomeSizes": "$HG19_ROOT/hg19.chrom.sizes.bed",
+          "haplotype.referenceModule": "hg19/p13",
+          "haplotype.referenceSequence": "$HG19_ROOT/hg19_random.fa"
+        }
+      }
+    },
+    {
+      "id": "EX_HC_no_intervals_no_BQSR",
+      "parameters": {
+        "wdl_inputs": {
+          "haplotype.bamIndices": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.bai"
+          ],
+          "haplotype.bams": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.bam"
+          ],
+          "haplotype.dbsnpFilePath": "$HG19_DBSNP_ROOT/dbsnp_137.hg19.vcf",
+          "haplotype.outputFileNamePrefix": "",
+          "haplotype.referenceChromosomeSizes": "$HG19_ROOT/hg19.chrom.sizes.bed",
+          "haplotype.referenceModule": "hg19/p13",
+          "haplotype.referenceSequence": "$HG19_ROOT/hg19_random.fa"
+        }
+      }
+    },
+    {
+      "id": "EX_HC_no_BQSR",
+      "parameters": {
+        "wdl_inputs": {
+          "haplotype.bamIndices": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.bai"
+          ],
+          "haplotype.bams": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.bam"
+          ],
+          "haplotype.dbsnpFilePath": "$HG19_DBSNP_ROOT/dbsnp_137.hg19.vcf",
+          "haplotype.filterIntervals": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/PCSI0022.val.bed",
+          "haplotype.outputFileNamePrefix": "",
+          "haplotype.referenceChromosomeSizes": "$HG19_ROOT/hg19.chrom.sizes.bed",
+          "haplotype.referenceModule": "hg19/p13 hg19-dbsnp/137",
+          "haplotype.referenceSequence": "$HG19_ROOT/hg19_random.fa"
+        }
+      }
+    },
+    {
+      "id": "EX_HC_no_parallelism_no_BQSR",
+      "parameters": {
+        "wdl_inputs": {
+          "haplotype.bamIndices": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.bai"
+          ],
+          "haplotype.bams": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.bam"
+          ],
+          "haplotype.callHaplotypes.mem": 4,
+          "haplotype.combine.mem": 4,
+          "haplotype.dbsnpFilePath": "$HG19_DBSNP_ROOT/dbsnp_137.hg19.vcf",
+          "haplotype.filterIntervals": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/PCSI0022.val.bed",
+          "haplotype.outputFileNamePrefix": "",
+          "haplotype.referenceChromosomeSizes": "$HG19_ROOT/hg19.chrom.sizes.bed",
+          "haplotype.referenceModule": "hg19/p13 hg19-dbsnp/137",
+          "haplotype.referenceSequence": "$HG19_ROOT/hg19_random.fa"
+        }
+      }
+    },
+    {
+      "id": "EX_HC_dbSNP144",
+      "parameters": {
+        "wdl_inputs": {
+          "haplotype.bamIndices": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bai"
+          ],
+          "haplotype.bams": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bam"
+          ],
+          "haplotype.dbsnpFilePath": "$HG19_DBSNP_ROOT/dbsnp_144.hg19.vcf",
+          "haplotype.filterIntervals": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/PCSI0022.val.bed",
+          "haplotype.outputFileNamePrefix": "",
+          "haplotype.referenceChromosomeSizes": "$HG19_ROOT/hg19.chrom.sizes.bed",
+          "haplotype.referenceModule": "hg19/p13 hg19-dbsnp/144",
+          "haplotype.referenceSequence": "$HG19_ROOT/hg19_random.fa"
+        }
+      }
+    },
+    {
+      "id": "BAI_Test",
+      "parameters": {
+        "wdl_inputs": {
+          "haplotype.bamIndices": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bam.bai"
+          ],
+          "haplotype.bams": [
+            "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bam"
+          ],
+          "haplotype.dbsnpFilePath": "$HG19_DBSNP_ROOT/dbsnp_137.hg19.vcf",
+          "haplotype.outputFileNamePrefix": "",
+          "haplotype.referenceChromosomeSizes": "$HG19_ROOT/hg19.chrom.sizes.bed",
+          "haplotype.referenceModule": "hg19/p13",
+          "haplotype.referenceSequence": "$HG19_ROOT/hg19_random.fa"
+        }
+      }
+    }
+  ]
+}
