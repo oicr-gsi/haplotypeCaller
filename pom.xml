@@ -10,12 +10,13 @@
         <relativePath/>
     </parent>
 
-    <artifactId>haplotype-caller</artifactId>
-    <version>1.0.0</version>
+    <artifactId>haplotypeCaller</artifactId>
+    <version>2.0</version>
 
     <properties>
         <workflow-description>Workflow to generate vcf from GATK haplotype caller</workflow-description>
-        <wdl-workflow>haplotypecaller.wdl</wdl-workflow>
+        <wdl-workflow>haplotypeCaller.wdl</wdl-workflow>
+        <test-definition>tests.json</test-definition>
     </properties>
 
 </project>
