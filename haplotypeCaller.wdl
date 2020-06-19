@@ -99,7 +99,7 @@ task callHaplotypes {
     String? filterIntervals
     Int intervalPadding = 100
     String intervalSetRule = "INTERSECTION"
-    String ERC = "GVCF"
+    String erc = "GVCF"
     Float standCallConf = 30.0
     String modules
     String refFasta
@@ -122,7 +122,7 @@ task callHaplotypes {
       -L ~{interval} \
       ~{if defined(filterIntervals) then "-L ~{filterIntervals} -isr ~{intervalSetRule} -ip ~{intervalPadding}" else ""} \
       -D ~{dbsnpFilePath} \
-      -ERC ~{ERC} \
+      -ERC ~{erc} \
       -stand-call-conf ~{standCallConf} \
       ~{extraArgs} \
       -O "~{outputName}"
