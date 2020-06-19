@@ -5,7 +5,7 @@ workflow haplotypeCaller {
     File bai
     File bam
     String? filterIntervals
-    String outputFileNamePrefix
+    String outputFileNamePrefix = basename(bam, ".bam")
     String intervalsToParallelizeBy
   }
   parameter_meta {
