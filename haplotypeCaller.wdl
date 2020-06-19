@@ -100,7 +100,6 @@ task callHaplotypes {
     Int intervalPadding = 100
     String intervalSetRule = "INTERSECTION"
     String erc = "GVCF"
-    Float standCallConf = 30.0
     String modules
     String refFasta
     String outputFileNamePrefix
@@ -123,7 +122,6 @@ task callHaplotypes {
       ~{if defined(filterIntervals) then "-L ~{filterIntervals} -isr ~{intervalSetRule} -ip ~{intervalPadding}" else ""} \
       -D ~{dbsnpFilePath} \
       -ERC ~{erc} \
-      -stand-call-conf ~{standCallConf} \
       ~{extraArgs} \
       -O "~{outputName}"
   >>>
@@ -148,8 +146,7 @@ task callHaplotypes {
     intervalPadding: "The number of bases of padding to add to each interval."
     intervalSetRule: "Set merging approach to use for combining interval inputs."
     interval: "The interval (chromosome) for this shard to work on."
-    ERC: "Mode for emitting reference confidence scores."
-    standCallConf: "The minimum phred-scaled confidence threshold at which variants should be called."
+    erc: "Mode for emitting reference confidence scores."
     modules: "Required environment modules."
     refFasta: "The file path to the reference genome."
     outputFileNamePrefix: "Prefix for output file."
