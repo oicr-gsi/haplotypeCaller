@@ -33,7 +33,7 @@ Parameter|Value|Description
 #### Optional workflow parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
-`filterIntervals`|String?|None|A BED file that restricts calling to only the regions in the file.
+`filterIntervals`|File?|None|A BED file that restricts calling to only the regions in the file.
 `outputFileNamePrefix`|String|basename(bam,".bam")|Prefix for output file.
 
 
@@ -44,7 +44,7 @@ Parameter|Value|Default|Description
 `splitStringToArray.jobMemory`|Int|1|Memory allocated to job (in GB).
 `splitStringToArray.cores`|Int|1|The number of cores to allocate to the job.
 `splitStringToArray.timeout`|Int|1|Maximum amount of time (in hours) the task can run for.
-`callHaplotypes.extraArgs`|String|""|Additional arguments to be passed directly to the command.
+`callHaplotypes.extraArgs`|String?|None|Additional arguments to be passed directly to the command.
 `callHaplotypes.intervalPadding`|Int|100|The number of bases of padding to add to each interval.
 `callHaplotypes.intervalSetRule`|String|"INTERSECTION"|Set merging approach to use for combining interval inputs.
 `callHaplotypes.erc`|String|"GVCF"|Mode for emitting reference confidence scores.
