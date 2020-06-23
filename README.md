@@ -23,7 +23,6 @@ Parameter|Value|Description
 ---|---|---
 `bai`|File|The index for the BAM file to be used.
 `bam`|File|The BAM file to be used.
-`outputFileNamePrefix`|String|Prefix for output file.
 `intervalsToParallelizeBy`|String|Comma separated list of intervals to split by (e.g. chr1,chr2,chr3,chr4).
 `callHaplotypes.dbsnpFilePath`|String|The dbSNP VCF to call against.
 `callHaplotypes.modules`|String|Required environment modules.
@@ -35,6 +34,7 @@ Parameter|Value|Description
 Parameter|Value|Default|Description
 ---|---|---|---
 `filterIntervals`|String?|None|A BED file that restricts calling to only the regions in the file.
+`outputFileNamePrefix`|String|basename(bam,".bam")|Prefix for output file.
 
 
 #### Optional task parameters:
@@ -47,8 +47,7 @@ Parameter|Value|Default|Description
 `callHaplotypes.extraArgs`|String|""|Additional arguments to be passed directly to the command.
 `callHaplotypes.intervalPadding`|Int|100|The number of bases of padding to add to each interval.
 `callHaplotypes.intervalSetRule`|String|"INTERSECTION"|Set merging approach to use for combining interval inputs.
-`callHaplotypes.ERC`|String|"GVCF"|Mode for emitting reference confidence scores.
-`callHaplotypes.standCallConf`|Float|30.0|The minimum phred-scaled confidence threshold at which variants should be called.
+`callHaplotypes.erc`|String|"GVCF"|Mode for emitting reference confidence scores.
 `callHaplotypes.jobMemory`|Int|24|Memory allocated to job (in GB).
 `callHaplotypes.overhead`|Int|6|Java overhead memory (in GB). jobMemory - overhead == java Xmx/heap memory.
 `callHaplotypes.cores`|Int|1|The number of cores to allocate to the job.
