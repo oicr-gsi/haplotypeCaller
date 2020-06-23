@@ -96,7 +96,7 @@ task callHaplotypes {
     String dbsnpFilePath
     String? extraArgs
     String interval
-    String? filterIntervals
+    File? filterIntervals
     Int intervalPadding = 100
     String intervalSetRule = "INTERSECTION"
     String erc = "GVCF"
