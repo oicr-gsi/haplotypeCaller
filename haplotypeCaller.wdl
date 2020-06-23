@@ -4,7 +4,7 @@ workflow haplotypeCaller {
   input {
     File bai
     File bam
-    String? filterIntervals
+    File? filterIntervals
     String outputFileNamePrefix = basename(bam, ".bam")
     String intervalsToParallelizeBy
   }
@@ -17,7 +17,7 @@ workflow haplotypeCaller {
   }
 
   meta {
-      author: "Andre Masella"
+      author: "Andre Masella, Xuemei Luo"
       description: "Workflow to run the GATK Haplotype Caller"
       dependencies: [{
           name: "GATK4",
@@ -94,7 +94,7 @@ task callHaplotypes {
     File bamIndex
     File bam
     String dbsnpFilePath
-    String extraArgs = ""
+    String? extraArgs
     String interval
     String? filterIntervals
     Int intervalPadding = 100
@@ -121,8 +121,7 @@ task callHaplotypes {
       -L ~{interval} \
       ~{if defined(filterIntervals) then "-L ~{filterIntervals} -isr ~{intervalSetRule} -ip ~{intervalPadding}" else ""} \
       -D ~{dbsnpFilePath} \
-      -ERC ~{erc} \
-      ~{extraArgs} \
+      -ERC ~{erc} ~{extraArgs} \
       -O "~{outputName}"
   >>>
 
