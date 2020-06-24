@@ -1,4 +1,4 @@
-# haplotype
+# haplotypeCaller
 
 Workflow to run the GATK Haplotype Caller
 
@@ -13,7 +13,7 @@ Workflow to run the GATK Haplotype Caller
 
 ### Cromwell
 ```
-java -jar cromwell.jar run haploptypecaller.wdl --inputs inputs.json
+java -jar cromwell.jar run haplotypeCaller.wdl --inputs inputs.json
 ```
 
 ### Inputs
@@ -21,41 +21,49 @@ java -jar cromwell.jar run haploptypecaller.wdl --inputs inputs.json
 #### Required workflow parameters:
 Parameter|Value|Description
 ---|---|---
-`bamIndices`|Array[File]+|The indicies for the BAM files to be used
-`bams`|Array[File]+|The BAM files to be used
-`dbsnpFilePath`|String|The dbSNP VCF to call against
-`outputFileNamePrefix`|String|The desired output file name
-`referenceChromosomeSizes`|String|
-`referenceModule`|String|The environment module containing the reference genome and/or dbSNP
-`referenceSequence`|String|The file path to the reference genome
-`callHaplotypes.intervalPadding`|Int|The number of bases of padding to add to each interval
+`bai`|File|The index for the BAM file to be used.
+`bam`|File|The BAM file to be used.
+`intervalsToParallelizeBy`|String|Comma separated list of intervals to split by (e.g. chr1,chr2,chr3,chr4).
+`callHaplotypes.dbsnpFilePath`|String|The dbSNP VCF to call against.
+`callHaplotypes.modules`|String|Required environment modules.
+`callHaplotypes.refFasta`|String|The file path to the reference genome.
+`mergeGVCFs.modules`|String|Required environment modules.
 
 
 #### Optional workflow parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
-`filterIntervals`|String?|None|A BED file that restricts calling to only the regions in the file
-`intervalPadding`|Int|0|The number of bases of padding to add to each interval
-`modules`|String|"gatk/4.1.5.0"|The environment modules for GATK
-`timeout`|Int|24|The maximum runtime of the workflow in hours.
+`filterIntervals`|File?|None|A BED file that restricts calling to only the regions in the file.
+`outputFileNamePrefix`|String|basename(bam,".bam")|Prefix for output file.
 
 
 #### Optional task parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
-`callHaplotypes.extraArgs`|String|""|Additional arguments to be passed directly to the command.
-`callHaplotypes.mem`|Int|8|The memory for this task in GB
-`callHaplotypes.timeout`|Int|24|The maximum runtime of the task in hours.
-`combine.mem`|Int|8|The memory for this task in GB
-`combine.timeout`|String|24|The maximum runtime of the task in hours.
+`splitStringToArray.lineSeparator`|String|","|line separator for intervalsToParallelizeBy. 
+`splitStringToArray.jobMemory`|Int|1|Memory allocated to job (in GB).
+`splitStringToArray.cores`|Int|1|The number of cores to allocate to the job.
+`splitStringToArray.timeout`|Int|1|Maximum amount of time (in hours) the task can run for.
+`callHaplotypes.extraArgs`|String?|None|Additional arguments to be passed directly to the command.
+`callHaplotypes.intervalPadding`|Int|100|The number of bases of padding to add to each interval.
+`callHaplotypes.intervalSetRule`|String|"INTERSECTION"|Set merging approach to use for combining interval inputs.
+`callHaplotypes.erc`|String|"GVCF"|Mode for emitting reference confidence scores.
+`callHaplotypes.jobMemory`|Int|24|Memory allocated to job (in GB).
+`callHaplotypes.overhead`|Int|6|Java overhead memory (in GB). jobMemory - overhead == java Xmx/heap memory.
+`callHaplotypes.cores`|Int|1|The number of cores to allocate to the job.
+`callHaplotypes.timeout`|Int|72|Maximum amount of time (in hours) the task can run for.
+`mergeGVCFs.jobMemory`|Int|24|Memory allocated to job (in GB).
+`mergeGVCFs.overhead`|Int|6|Java overhead memory (in GB). jobMemory - overhead == java Xmx/heap memory.
+`mergeGVCFs.cores`|Int|1|The number of cores to allocate to the job.
+`mergeGVCFs.timeout`|Int|24|Maximum amount of time (in hours) the task can run for.
 
 
 ### Outputs
 
 Output | Type | Description
 ---|---|---
-`vcf`|File|The VCF of for the input BAMs
-`index`|File|The index of the VCF
+`outputVcf`|File|output vcf
+`outputVcfIndex`|File|output vcf index
 
 
 ## Niassa + Cromwell
@@ -86,4 +94,4 @@ mvn clean verify \
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
 
-_Generated with wdl_doc_gen (https://github.com/oicr-gsi/wdl_doc_gen/)_
+_Generated with generate-markdown-readme (https://github.com/oicr-gsi/gsi-wdl-tools/)_
