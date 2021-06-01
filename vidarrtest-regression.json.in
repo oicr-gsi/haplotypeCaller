@@ -1,0 +1,173 @@
+[
+    {
+        "arguments": {
+            "haplotypeCaller.bai": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bai",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "haplotypeCaller.bam": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bam",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "haplotypeCaller.callHaplotypes.cores": null,
+            "haplotypeCaller.callHaplotypes.dbsnpFilePath": "$HG19_DBSNP_LEFTALIGNED_ROOT/dbsnp_138.hg19.leftAligned.vcf.gz",
+            "haplotypeCaller.callHaplotypes.erc": null,
+            "haplotypeCaller.callHaplotypes.extraArgs": null,
+            "haplotypeCaller.callHaplotypes.intervalPadding": null,
+            "haplotypeCaller.callHaplotypes.intervalSetRule": null,
+            "haplotypeCaller.callHaplotypes.jobMemory": null,
+            "haplotypeCaller.callHaplotypes.modules": "gatk/4.1.7.0 hg19/p13 hg19-dbsnp-leftaligned/138",
+            "haplotypeCaller.callHaplotypes.overhead": null,
+            "haplotypeCaller.callHaplotypes.refFasta": "$HG19_ROOT/hg19_random.fa",
+            "haplotypeCaller.callHaplotypes.timeout": null,
+            "haplotypeCaller.filterIntervals": null,
+            "haplotypeCaller.intervalsToParallelizeBy": "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22,chrX,chrY",
+            "haplotypeCaller.mergeGVCFs.cores": null,
+            "haplotypeCaller.mergeGVCFs.jobMemory": null,
+            "haplotypeCaller.mergeGVCFs.modules": "gatk/4.1.7.0",
+            "haplotypeCaller.mergeGVCFs.overhead": null,
+            "haplotypeCaller.mergeGVCFs.timeout": null,
+            "haplotypeCaller.outputFileNamePrefix": "PCSI0022P",
+            "haplotypeCaller.splitStringToArray.cores": null,
+            "haplotypeCaller.splitStringToArray.jobMemory": null,
+            "haplotypeCaller.splitStringToArray.lineSeparator": null,
+            "haplotypeCaller.splitStringToArray.timeout": null
+        },
+        "description": "GATKHaplotypeCaller workflow test",
+        "engineArguments": {},
+        "id": "HC_no_intervals",
+        "metadata": {
+            "haplotypeCaller.outputVcf": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_haplotypeCaller_HC_no_intervals_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "haplotypeCaller.outputVcfIndex": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_haplotypeCaller_HC_no_intervals_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/./calculate.sh",
+                "metrics_compare": "@CHECKOUT@/./compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.0/output_metrics/HC_no_intervals.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "haplotypeCaller.bai": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bai",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "haplotypeCaller.bam": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bam",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "haplotypeCaller.callHaplotypes.cores": null,
+            "haplotypeCaller.callHaplotypes.dbsnpFilePath": "$HG19_DBSNP_LEFTALIGNED_ROOT/dbsnp_138.hg19.leftAligned.vcf.gz",
+            "haplotypeCaller.callHaplotypes.erc": null,
+            "haplotypeCaller.callHaplotypes.extraArgs": null,
+            "haplotypeCaller.callHaplotypes.intervalPadding": null,
+            "haplotypeCaller.callHaplotypes.intervalSetRule": null,
+            "haplotypeCaller.callHaplotypes.jobMemory": null,
+            "haplotypeCaller.callHaplotypes.modules": "gatk/4.1.7.0 hg19/p13 hg19-dbsnp-leftaligned/138",
+            "haplotypeCaller.callHaplotypes.overhead": null,
+            "haplotypeCaller.callHaplotypes.refFasta": "$HG19_ROOT/hg19_random.fa",
+            "haplotypeCaller.callHaplotypes.timeout": null,
+            "haplotypeCaller.filterIntervals": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/PCSI0022.val.bed",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "haplotypeCaller.intervalsToParallelizeBy": "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr9,chr10,chr11,chr12,chr14,chr16,chr17,chr18,chr19,chrX",
+            "haplotypeCaller.mergeGVCFs.cores": null,
+            "haplotypeCaller.mergeGVCFs.jobMemory": null,
+            "haplotypeCaller.mergeGVCFs.modules": "gatk/4.1.7.0",
+            "haplotypeCaller.mergeGVCFs.overhead": null,
+            "haplotypeCaller.mergeGVCFs.timeout": null,
+            "haplotypeCaller.outputFileNamePrefix": null,
+            "haplotypeCaller.splitStringToArray.cores": null,
+            "haplotypeCaller.splitStringToArray.jobMemory": null,
+            "haplotypeCaller.splitStringToArray.lineSeparator": null,
+            "haplotypeCaller.splitStringToArray.timeout": null
+        },
+        "description": "GATKHaplotypeCaller workflow test",
+        "engineArguments": {},
+        "id": "HC_with_intervals",
+        "metadata": {
+            "haplotypeCaller.outputVcf": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_haplotypeCaller_HC_with_intervals_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "haplotypeCaller.outputVcfIndex": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_haplotypeCaller_HC_with_intervals_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/./calculate.sh",
+                "metrics_compare": "@CHECKOUT@/./compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.0/output_metrics/HC_with_intervals.metrics",
+                "type": "script"
+            }
+        ]
+    }
+]
