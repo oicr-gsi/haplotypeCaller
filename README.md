@@ -2,8 +2,6 @@
 
 Workflow to run the GATK Haplotype Caller
 
-## Overview
-
 ## Dependencies
 
 * [GATK4](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller)
@@ -33,7 +31,7 @@ Parameter|Value|Description
 #### Optional workflow parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
-`filterIntervals`|File?|None|A BED file that restricts calling to only the regions in the file.
+`filterIntervals`|String?|None|Path to a BED file that restricts calling to only the regions in the file.
 `outputFileNamePrefix`|String|basename(bam,".bam")|Prefix for output file.
 
 
@@ -66,31 +64,45 @@ Output | Type | Description
 `outputVcfIndex`|File|output vcf index
 
 
-## Niassa + Cromwell
-
-This WDL workflow is wrapped in a Niassa workflow (https://github.com/oicr-gsi/pipedev/tree/master/pipedev-niassa-cromwell-workflow) so that it can used with the Niassa metadata tracking system (https://github.com/oicr-gsi/niassa).
-
-* Building
-```
-mvn clean install
-```
-
-* Testing
-```
-mvn clean verify \
--Djava_opts="-Xmx1g -XX:+UseG1GC -XX:+UseStringDeduplication" \
--DrunTestThreads=2 \
--DskipITs=false \
--DskipRunITs=false \
--DworkingDirectory=/path/to/tmp/ \
--DschedulingHost=niassa_oozie_host \
--DwebserviceUrl=http://niassa-url:8080 \
--DwebserviceUser=niassa_user \
--DwebservicePassword=niassa_user_password \
--Dcromwell-host=http://cromwell-url:8000
-```
-
-## Support
+## Commands
+ This section lists commands run by haplotypeCaller workflow
+ 
+ * Running haplotypeCaller
+ 
+ Workflow to run the GATK Haplotype Caller
+ 
+ ### Parsing intervals
+ 
+ ```
+     echo INTERVALS_TO_PARALLELIZE_BY | tr 'LINE_SEPARATOR' '\n'
+ ```
+ 
+ ### Running haplotypeCaller
+ 
+ ```
+     set -euo pipefail
+ 
+     gatk --java-options -Xmx[JOB_MEMORY - OVERHEAD]G 
+        HaplotypeCaller 
+     -R REFERENCE_FASTA
+     -I INPUT_BAM
+     -L INTERVAL_FILE
+     -L FILTER_INTERVALS -isr INTERVAL_SetRule -ip INTERVAL_Padding # Optional
+     -D DBSNP_VCF
+     -ERC ERC EXTRA_ARGUMENTS
+     -O OUTPUT
+ ```
+ 
+ ### Merging vcf files
+ 
+ ```
+     set -euo pipefail
+ 
+     gatk --java-options "-Xmx[JOB_MEMORY - OVERHEAD]G" MergeVcfs
+     -I VCF_FILES
+     -O OUTPUT
+ ```
+ ## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
 

@@ -116,18 +116,7 @@
             "haplotypeCaller.callHaplotypes.overhead": null,
             "haplotypeCaller.callHaplotypes.refFasta": "$HG19_ROOT/hg19_random.fa",
             "haplotypeCaller.callHaplotypes.timeout": null,
-            "haplotypeCaller.filterIntervals": {
-                "contents": {
-                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/PCSI0022.val.bed",
-                    "externalIds": [
-                        {
-                            "id": "TEST",
-                            "provider": "TEST"
-                        }
-                    ]
-                },
-                "type": "EXTERNAL"
-            },
+            "haplotypeCaller.filterIntervals": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/PCSI0022.val.bed",
             "haplotypeCaller.intervalsToParallelizeBy": "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr9,chr10,chr11,chr12,chr14,chr16,chr17,chr18,chr19,chrX",
             "haplotypeCaller.mergeGVCFs.cores": null,
             "haplotypeCaller.mergeGVCFs.jobMemory": null,

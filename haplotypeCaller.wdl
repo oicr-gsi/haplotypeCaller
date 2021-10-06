@@ -4,14 +4,14 @@ workflow haplotypeCaller {
   input {
     File bai
     File bam
-    File? filterIntervals
+    String? filterIntervals
     String outputFileNamePrefix = basename(bam, ".bam")
     String intervalsToParallelizeBy
   }
   parameter_meta {
       bai: "The index for the BAM file to be used."
       bam: "The BAM file to be used."
-      filterIntervals: "A BED file that restricts calling to only the regions in the file."
+      filterIntervals: "Path to a BED file that restricts calling to only the regions in the file."
       outputFileNamePrefix: "Prefix for output file."
       intervalsToParallelizeBy: "Comma separated list of intervals to split by (e.g. chr1,chr2,chr3,chr4)."
   }
@@ -96,7 +96,7 @@ task callHaplotypes {
     String dbsnpFilePath
     String? extraArgs
     String interval
-    File? filterIntervals
+    String? filterIntervals
     Int intervalPadding = 100
     String intervalSetRule = "INTERSECTION"
     String erc = "GVCF"
@@ -141,7 +141,7 @@ task callHaplotypes {
     bam: "The BAM file to be used."
     dbsnpFilePath: "The dbSNP VCF to call against."
     extraArgs: "Additional arguments to be passed directly to the command."
-    filterIntervals: "A BED file that restricts calling to only the regions in the file."
+    filterIntervals: "Path to a BED file that restricts calling to only the regions in the file."
     intervalPadding: "The number of bases of padding to add to each interval."
     intervalSetRule: "Set merging approach to use for combining interval inputs."
     interval: "The interval (chromosome) for this shard to work on."
