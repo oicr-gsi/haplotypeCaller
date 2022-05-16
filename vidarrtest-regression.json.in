@@ -50,7 +50,10 @@
             "haplotypeCaller.splitStringToArray.timeout": null
         },
         "description": "GATKHaplotypeCaller workflow test",
-        "engineArguments": {},
+        "engineArguments": {
+          "read_from_cache": false,
+          "write_to_cache": false
+        },
         "id": "HC_no_intervals",
         "metadata": {
             "haplotypeCaller.outputVcf": {
@@ -130,7 +133,10 @@
             "haplotypeCaller.splitStringToArray.timeout": null
         },
         "description": "GATKHaplotypeCaller workflow test",
-        "engineArguments": {},
+        "engineArguments": {
+          "read_from_cache": false,
+          "write_to_cache": false
+        },
         "id": "HC_with_intervals",
         "metadata": {
             "haplotypeCaller.outputVcf": {
