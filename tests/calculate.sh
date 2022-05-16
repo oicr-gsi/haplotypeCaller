@@ -9,4 +9,4 @@ cd $1
 #find all files, return their md5sums to std out
 ls | sort
 
-find . -name '*.vcf.gz' | xargs zcat | grep -v ^# | md5sum | sort
+for f in $(find -name *.vcf.gz);do awk 'NF{NF--};1' $f | md5sum;done | sort -V
