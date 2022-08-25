@@ -1,6 +1,7 @@
 {
     "names": [
-        "haplotypeCaller"
+        "haplotypeCaller",
+        "haplotypeCaller_by_tumor_group"
     ],
     "wdl": "haplotypeCaller.wdl"
 }
