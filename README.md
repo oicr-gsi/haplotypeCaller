@@ -21,10 +21,8 @@ Parameter|Value|Description
 ---|---|---
 `bai`|File|The index for the BAM file to be used.
 `bam`|File|The BAM file to be used.
+`reference`|String|Assembly id, i.e. hg38
 `intervalsToParallelizeBy`|String|Comma separated list of intervals to split by (e.g. chr1,chr2,chr3,chr4).
-`callHaplotypes.dbsnpFilePath`|String|The dbSNP VCF to call against.
-`callHaplotypes.modules`|String|Required environment modules.
-`callHaplotypes.refFasta`|String|The file path to the reference genome.
 `mergeGVCFs.modules`|String|Required environment modules.
 
 
