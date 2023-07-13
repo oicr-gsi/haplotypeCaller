@@ -1,17 +1,25 @@
 version 1.0
 
+struct genomicResources {
+  String modules
+  String refFasta
+  String dbsnpFilePath
+}
+
 workflow haplotypeCaller {
   input {
     File bai
     File bam
     String? filterIntervals
     String outputFileNamePrefix = basename(bam, ".bam")
+    String reference
     String intervalsToParallelizeBy
   }
   parameter_meta {
       bai: "The index for the BAM file to be used."
       bam: "The BAM file to be used."
       filterIntervals: "Path to a BED file that restricts calling to only the regions in the file."
+      reference: "Assembly id, i.e. hg38"
       outputFileNamePrefix: "Prefix for output file."
       intervalsToParallelizeBy: "Comma separated list of intervals to split by (e.g. chr1,chr2,chr3,chr4)."
   }
@@ -29,6 +37,17 @@ workflow haplotypeCaller {
       }
   }
 
+  Map[String,genomicResources] resources = {
+    "hg19": {"modules":  "gatk/4.1.7.0 hg19/p13 hg19-dbsnp-leftaligned/138",
+             "refFasta": "$HG19_ROOT/hg19_random.fa",
+             "dbsnpFilePath": "$HG19_DBSNP_LEFTALIGNED_ROOT/dbsnp_138.hg19.leftAligned.vcf.gz"
+    },
+    "hg38": {"modules":   "gatk/4.1.7.0 hg38/p12 hg38-dbsnp/138",
+             "refFasta":  "$HG38_ROOT/hg38_random.fa",
+             "dbsnpFilePath": "$HG38_DBSNP_ROOT/dbsnp_138.hg38.vcf.gz"
+    }
+  }
+
   call splitStringToArray {
     input:
       intervalsToParallelizeBy = intervalsToParallelizeBy
@@ -42,6 +61,9 @@ workflow haplotypeCaller {
          interval = intervals[0],
          filterIntervals = filterIntervals,
          outputFileNamePrefix = outputFileNamePrefix,
+         modules  = resources[reference].modules,
+         refFasta = resources[reference].refFasta,
+         dbsnpFilePath = resources[reference].dbsnpFilePath
      }
   }
 
