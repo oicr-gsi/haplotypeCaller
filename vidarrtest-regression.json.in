@@ -78,7 +78,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.2/output_metrics/HC_no_intervals.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.2.1/output_metrics/HC_no_intervals.metrics",
                 "type": "script"
             }
         ]
@@ -162,7 +162,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.2/output_metrics/HC_with_intervals.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.2.1/output_metrics/HC_with_intervals.metrics",
                 "type": "script"
             }
         ]
