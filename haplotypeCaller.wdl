@@ -38,11 +38,11 @@ workflow haplotypeCaller {
   }
 
   Map[String,genomicResources] resources = {
-    "hg19": {"modules":  "gatk/4.1.7.0 hg19/p13 hg19-dbsnp-leftaligned/138",
+    "hg19": {"modules":  "gatk/4.2.6.1 hg19/p13 hg19-dbsnp-leftaligned/138",
              "refFasta": "$HG19_ROOT/hg19_random.fa",
              "dbsnpFilePath": "$HG19_DBSNP_LEFTALIGNED_ROOT/dbsnp_138.hg19.leftAligned.vcf.gz"
     },
-    "hg38": {"modules":   "gatk/4.1.7.0 hg38/p12 hg38-dbsnp/138",
+    "hg38": {"modules":   "gatk/4.2.6.1 hg38/p12 hg38-dbsnp/138",
              "refFasta":  "$HG38_ROOT/hg38_random.fa",
              "dbsnpFilePath": "$HG38_DBSNP_ROOT/dbsnp_138.hg38.vcf.gz"
     }
