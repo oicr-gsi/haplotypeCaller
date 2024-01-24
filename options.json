@@ -1,0 +1,6 @@
+{
+  "default_runtime_attributes": {
+    "docker": "g3chen/haplotypecaller@sha256:fc775ca12b8a8d7d0f5da32f2e6d174eb7a59f3d2e151f66941ccd265a770409",
+    "docker_volume": "/home/ubuntu/Downloads/sample_data:/data"
+  }
+}
