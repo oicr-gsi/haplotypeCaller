@@ -1,3 +1,5 @@
+## 2.1.1 - 2024-01-23
+- update GATK version from 4.1.7.0 to 4.2.6.1
 ## 2.1.0 - 2023-07-07
 - moving assembly-specific settings into wdl
 - [GRD-662](https://jira.oicr.on.ca/browse/GRD-662)
