@@ -1,3 +1,5 @@
+## 2.2.0 - 2024-06-25
+[GRD-797](https://jira.oicr.on.ca/browse/GRD-797) - add vidarr labels to outputs (changes to medata only)
 ## 2.1.1 - 2024-01-23
 - update GATK version from 4.1.7.0 to 4.2.6.1
 ## 2.1.0 - 2023-07-07

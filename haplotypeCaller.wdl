@@ -31,10 +31,16 @@ workflow haplotypeCaller {
           name: "GATK4",
           url: "https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller"
       }]
-      output_meta: {
-        outputVcf: "output vcf",
-        outputVcfIndex: "output vcf index"
-      }
+    output_meta: {
+    outputVcf: {
+        description: "output vcf",
+        vidarr_label: "outputVcf"
+    },
+    outputVcfIndex: {
+        description: "output vcf index",
+        vidarr_label: "outputVcfIndex"
+    }
+}
   }
 
   Map[String,genomicResources] resources = {
