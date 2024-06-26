@@ -56,28 +56,28 @@ Parameter|Value|Default|Description
 
 ### Outputs
 
-Output | Type | Description
----|---|---
-`outputVcf`|File|output vcf
-`outputVcfIndex`|File|output vcf index
+Output | Type | Description | Labels
+---|---|---|---
+`outputVcf`|File|output vcf|vidarr_label: outputVcf
+`outputVcfIndex`|File|output vcf index|vidarr_label: outputVcfIndex
 
 
 ## Commands
- This section lists commands run by haplotypeCaller workflow
+This section lists commands run by haplotypeCaller workflow
  
- * Running haplotypeCaller
+* Running haplotypeCaller
  
- Workflow to run the GATK Haplotype Caller
+Workflow to run the GATK Haplotype Caller
  
- ### Parsing intervals
+### Parsing intervals
  
- ```
+```
      echo INTERVALS_TO_PARALLELIZE_BY | tr 'LINE_SEPARATOR' '\n'
- ```
+```
  
- ### Running haplotypeCaller
+### Running haplotypeCaller
  
- ```
+```
      set -euo pipefail
  
      gatk --java-options -Xmx[JOB_MEMORY - OVERHEAD]G 
@@ -89,18 +89,18 @@ Output | Type | Description
      -D DBSNP_VCF
      -ERC ERC EXTRA_ARGUMENTS
      -O OUTPUT
- ```
+```
  
- ### Merging vcf files
+### Merging vcf files
  
- ```
+```
      set -euo pipefail
  
      gatk --java-options "-Xmx[JOB_MEMORY - OVERHEAD]G" MergeVcfs
      -I VCF_FILES
      -O OUTPUT
- ```
- ## Support
+```
+## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
 
