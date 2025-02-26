@@ -14,6 +14,7 @@ workflow haplotypeCaller {
     String outputFileNamePrefix = basename(bam, ".bam")
     String reference
     String intervalsToParallelizeBy
+    Boolean rnaMode = false 
   }
   parameter_meta {
       bai: "The index for the BAM file to be used."
@@ -22,10 +23,11 @@ workflow haplotypeCaller {
       reference: "Assembly id, i.e. hg38"
       outputFileNamePrefix: "Prefix for output file."
       intervalsToParallelizeBy: "Comma separated list of intervals to split by (e.g. chr1,chr2,chr3,chr4)."
+      rnaMode: "flag to indicate wether to run RNA-seq data. Default is false (DNA mode)."
   }
 
   meta {
-      author: "Andre Masella, Xuemei Luo"
+      author: "Andre Masella, Xuemei Luo, Monica L. Rojas-Pena"
       description: "Workflow to run the GATK Haplotype Caller"
       dependencies: [{
           name: "GATK4",
@@ -70,6 +72,7 @@ workflow haplotypeCaller {
          modules  = resources[reference].modules,
          refFasta = resources[reference].refFasta,
          dbsnpFilePath = resources[reference].dbsnpFilePath
+         rnaMode = rnaMode
      }
   }
 
@@ -135,12 +138,23 @@ task callHaplotypes {
     Int overhead = 6
     Int cores = 1
     Int timeout = 72
+    Boolean rnaMode = false
   }
  
   String outputName = "~{outputFileNamePrefix}.~{interval}.g.vcf.gz"
 
   command <<<
     set -euo pipefail
+
+    # Define the arguments based on RNA mode
+    if [ "~{rnaMode}" == "true" ]; then
+      extraArgs="--dont-use-soft-clipped-basses \ 
+      --standard-min-confidence-threshold-for-calling 20 \
+      --max-reads-per-alignment-start 0 \
+      --G StandardAnnotation \
+      -G StandardHCAnnotation"
+      erc = "NONE"
+    fi
 
     gatk --java-options -Xmx~{jobMemory - overhead}G \
       HaplotypeCaller \
@@ -181,6 +195,7 @@ task callHaplotypes {
     overhead: "Java overhead memory (in GB). jobMemory - overhead == java Xmx/heap memory."
     cores: "The number of cores to allocate to the job."
     timeout: "Maximum amount of time (in hours) the task can run for."
+    rnaMode: "Flag indicating whether to run RNA-seq mode."
   }
   meta {
       output_meta: {
@@ -239,5 +254,3 @@ task mergeGVCFs {
   }
 
 }
-
-
