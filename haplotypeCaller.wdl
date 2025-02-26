@@ -72,7 +72,6 @@ workflow haplotypeCaller {
          modules  = resources[reference].modules,
          refFasta = resources[reference].refFasta,
          dbsnpFilePath = resources[reference].dbsnpFilePath
-         rnaMode = rnaMode
      }
   }
 
