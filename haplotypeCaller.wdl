@@ -164,7 +164,7 @@ String outputName = "~{outputFileNamePrefix}~{interval}~{if GVCF then '.g.vcf.gz
       -D ~{dbsnpFilePath} \
       ~{if rnaMode then "--dont-use-soft-clipped-bases --standard-min-confidence-threshold-for-calling 20 --max-reads-per-alignment-start 0 --G StandardAnnotation -G StandardHCAnnotation" 
       else ""} \
-      ~{if GVCF then "-ECR GVCF" else "-ERC NONE"} \
+      ~{if GVCF then "-ERC GVCF" else "-ERC NONE"} \
       ~{extraArgs} \
       -O "~{outputName}"
   >>>
