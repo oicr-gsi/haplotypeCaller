@@ -15,7 +15,7 @@ workflow haplotypeCaller {
     String reference
     String intervalsToParallelizeBy
     Boolean rnaMode = false
-    Boolean GVCF = false
+    Boolean GVCF = true
   }
   parameter_meta {
       bai: "The index for the BAM file to be used."
