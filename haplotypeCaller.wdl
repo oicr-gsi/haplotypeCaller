@@ -24,8 +24,8 @@ workflow haplotypeCaller {
       reference: "Assembly id, i.e. hg38"
       outputFileNamePrefix: "Prefix for output file."
       intervalsToParallelizeBy: "Comma separated list of intervals to split by (e.g. chr1,chr2,chr3,chr4)."
-      rnaMode: "flag to indicate whether to run RNA sequencing data. Default is DNA mode."
-      GVCF: "flag to indicated whether the output is VCF (default) or GVCF." 
+      rnaMode: "flag to indicate whether to run RNA sequencing data. Default is false (DNA mode)."
+      GVCF: "flag to indicated whether the output is VCF or GVCF (default)." 
   }
 
   meta {
@@ -197,8 +197,8 @@ String outputName = "~{outputFileNamePrefix}~{interval}~{if GVCF then '.g.vcf.gz
     overhead: "Java overhead memory (in GB). jobMemory - overhead == java Xmx/heap memory."
     cores: "The number of cores to allocate to the job."
     timeout: "Maximum amount of time (in hours) the task can run for."
-    rnaMode: "Flag to indicate whether to run RNA sequencing data. Default is DNA mode."
-    GVCF: "Flag to indicate whether the output is VCF (default) or GVCF."
+    rnaMode: "flag to indicate whether to run RNA sequencing data. Default is false (DNA mode)."
+    GVCF: "flag to indicated whether the output is VCF or GVCF (default)."
   }
   meta {
       output_meta: {

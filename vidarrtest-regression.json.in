@@ -27,7 +27,6 @@
             },
             "haplotypeCaller.callHaplotypes.cores": null,
             "haplotypeCaller.callHaplotypes.dbsnpFilePath": null,
-            "haplotypeCaller.callHaplotypes.erc": null,
             "haplotypeCaller.callHaplotypes.extraArgs": null,
             "haplotypeCaller.callHaplotypes.intervalPadding": null,
             "haplotypeCaller.callHaplotypes.intervalSetRule": null,
@@ -48,9 +47,11 @@
             "haplotypeCaller.splitStringToArray.cores": null,
             "haplotypeCaller.splitStringToArray.jobMemory": null,
             "haplotypeCaller.splitStringToArray.lineSeparator": null,
-            "haplotypeCaller.splitStringToArray.timeout": null
+            "haplotypeCaller.splitStringToArray.timeout": null,
+            "haplotypeCaller.rnaMode": null,
+	        "haplotypeCaller.GVCF": null
         },
-        "description": "GATKHaplotypeCaller workflow test",
+        "description": "GATKHaplotypeCaller workflow no intervals test",
         "engineArguments": {
           "read_from_cache": false,
           "write_to_cache": false
@@ -111,7 +112,6 @@
             },
             "haplotypeCaller.callHaplotypes.cores": null,
             "haplotypeCaller.callHaplotypes.dbsnpFilePath": null,
-            "haplotypeCaller.callHaplotypes.erc": null,
             "haplotypeCaller.callHaplotypes.extraArgs": null,
             "haplotypeCaller.callHaplotypes.intervalPadding": null,
             "haplotypeCaller.callHaplotypes.intervalSetRule": null,
@@ -132,9 +132,11 @@
             "haplotypeCaller.splitStringToArray.cores": null,
             "haplotypeCaller.splitStringToArray.jobMemory": null,
             "haplotypeCaller.splitStringToArray.lineSeparator": null,
-            "haplotypeCaller.splitStringToArray.timeout": null
+            "haplotypeCaller.splitStringToArray.timeout": null,
+            "haplotypeCaller.rnaMode": null,
+	        "haplotypeCaller.GVCF": null
         },
-        "description": "GATKHaplotypeCaller workflow test",
+        "description": "GATKHaplotypeCaller workflow with intervals test",
         "engineArguments": {
           "read_from_cache": false,
           "write_to_cache": false
@@ -163,6 +165,176 @@
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
                 "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.2.1/output_metrics/HC_with_intervals.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "haplotypeCaller.bai": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/RNAfile.sorted.filter.deduped.realigned.recal.bai",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "haplotypeCaller.bam": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/RNAfile.sorted.filter.deduped.realigned.recal.bam",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "haplotypeCaller.callHaplotypes.cores": null,
+            "haplotypeCaller.callHaplotypes.dbsnpFilePath": null,
+            "haplotypeCaller.callHaplotypes.extraArgs": null,
+            "haplotypeCaller.callHaplotypes.intervalPadding": null,
+            "haplotypeCaller.callHaplotypes.intervalSetRule": null,
+            "haplotypeCaller.callHaplotypes.jobMemory": null,
+            "haplotypeCaller.callHaplotypes.modules": null,
+            "haplotypeCaller.callHaplotypes.overhead": null,
+            "haplotypeCaller.callHaplotypes.refFasta": null,
+            "haplotypeCaller.callHaplotypes.timeout": null,
+            "haplotypeCaller.filterIntervals": null,
+            "haplotypeCaller.intervalsToParallelizeBy": "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22,chrX,chrY",
+            "haplotypeCaller.mergeGVCFs.cores": null,
+            "haplotypeCaller.mergeGVCFs.jobMemory": null,
+            "haplotypeCaller.mergeGVCFs.modules": "gatk/4.2.6.1",
+            "haplotypeCaller.mergeGVCFs.overhead": null,
+            "haplotypeCaller.mergeGVCFs.timeout": null,
+            "haplotypeCaller.outputFileNamePrefix": "RNAfile",
+            "haplotypeCaller.reference": "hg38",
+            "haplotypeCaller.splitStringToArray.cores": null,
+            "haplotypeCaller.splitStringToArray.jobMemory": null,
+            "haplotypeCaller.splitStringToArray.lineSeparator": null,
+            "haplotypeCaller.splitStringToArray.timeout": null,
+            "haplotypeCaller.rnaMode": "true",
+	        "haplotypeCaller.GVCF": "false"
+        },
+        "description": "GATKHaplotypeCaller RNA-seq workflow no intervals test",
+        "engineArguments": {
+          "read_from_cache": false,
+          "write_to_cache": false
+        },
+        "id": "HC_no_intervals",
+        "metadata": {
+            "haplotypeCaller.outputVcf": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_haplotypeCaller_HC_RNA_no_intervals_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "haplotypeCaller.outputVcfIndex": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_haplotypeCaller_HC_RNA_no_intervals_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.2.1/output_metrics/HC_RNA_no_intervals.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "haplotypeCaller.bai": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/RNAfile.sorted.filter.deduped.realigned.recal.bai",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "haplotypeCaller.bam": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/RNAfile.sorted.filter.deduped.realigned.recal.bam",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "haplotypeCaller.callHaplotypes.cores": null,
+            "haplotypeCaller.callHaplotypes.dbsnpFilePath": null,
+            "haplotypeCaller.callHaplotypes.extraArgs": null,
+            "haplotypeCaller.callHaplotypes.intervalPadding": null,
+            "haplotypeCaller.callHaplotypes.intervalSetRule": null,
+            "haplotypeCaller.callHaplotypes.jobMemory": null,
+            "haplotypeCaller.callHaplotypes.modules": null,
+            "haplotypeCaller.callHaplotypes.overhead": null,
+            "haplotypeCaller.callHaplotypes.refFasta": null,
+            "haplotypeCaller.callHaplotypes.timeout": null,
+            "haplotypeCaller.filterIntervals": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/RNAfile.val.bed",
+            "haplotypeCaller.intervalsToParallelizeBy": "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr9,chr10,chr11,chr12,chr14,chr16,chr17,chr18,chr19,chrX",
+            "haplotypeCaller.mergeGVCFs.cores": null,
+            "haplotypeCaller.mergeGVCFs.jobMemory": null,
+            "haplotypeCaller.mergeGVCFs.modules": "gatk/4.2.6.1",
+            "haplotypeCaller.mergeGVCFs.overhead": null,
+            "haplotypeCaller.mergeGVCFs.timeout": null,
+            "haplotypeCaller.outputFileNamePrefix": null,
+            "haplotypeCaller.reference": "hg38",
+            "haplotypeCaller.splitStringToArray.cores": null,
+            "haplotypeCaller.splitStringToArray.jobMemory": null,
+            "haplotypeCaller.splitStringToArray.lineSeparator": null,
+            "haplotypeCaller.splitStringToArray.timeout": null,
+            "haplotypeCaller.rnaMode": "true",
+	        "haplotypeCaller.GVCF": "false"
+        },
+        "description": "GATKHaplotypeCaller RNA-seq workflow with intervals test",
+        "engineArguments": {
+          "read_from_cache": false,
+          "write_to_cache": false
+        },
+        "id": "HC_with_intervals",
+        "metadata": {
+            "haplotypeCaller.outputVcf": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_haplotypeCaller_HC_RNA_with_intervals_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "haplotypeCaller.outputVcfIndex": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_haplotypeCaller_HC_RNA_with_intervals_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.2.1/output_metrics/HC_RNA_with_intervals.metrics",
                 "type": "script"
             }
         ]
