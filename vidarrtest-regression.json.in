@@ -218,8 +218,8 @@
             "haplotypeCaller.splitStringToArray.jobMemory": null,
             "haplotypeCaller.splitStringToArray.lineSeparator": null,
             "haplotypeCaller.splitStringToArray.timeout": null,
-            "haplotypeCaller.rnaMode": "true",
-	        "haplotypeCaller.GVCF": "false"
+            "haplotypeCaller.rnaMode": true,
+	        "haplotypeCaller.GVCF": false
         },
         "description": "GATKHaplotypeCaller RNA-seq workflow no intervals test",
         "engineArguments": {
