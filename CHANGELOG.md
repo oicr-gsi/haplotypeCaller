@@ -1,3 +1,5 @@
+## 2.3.0 - 2025-03-04
+- [GRD-872](https://jira.oicr.on.ca/browse/GRD-872) - Update to add RNA mode option, setting up DNA and -ERC GCVF by default
 ## 2.2.0 - 2024-06-25
 [GRD-797](https://jira.oicr.on.ca/browse/GRD-797) - add vidarr labels to outputs (changes to medata only)
 ## 2.1.1 - 2024-01-23
