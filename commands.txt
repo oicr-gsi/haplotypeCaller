@@ -11,20 +11,40 @@ Workflow to run the GATK Haplotype Caller
     echo INTERVALS_TO_PARALLELIZE_BY | tr 'LINE_SEPARATOR' '\n'
 ```
 
-### Running haplotypeCaller
+### Running haplotypeCaller DNA mode
 
 ```
     set -euo pipefail
 
-    gatk --java-options -Xmx[JOB_MEMORY - OVERHEAD]G 
-       HaplotypeCaller 
-    -R REFERENCE_FASTA
-    -I INPUT_BAM
-    -L INTERVAL_FILE
-    -L FILTER_INTERVALS -isr INTERVAL_SetRule -ip INTERVAL_Padding # Optional
-    -D DBSNP_VCF
-    -ERC ERC EXTRA_ARGUMENTS
-    -O OUTPUT
+    gatk --java-options -Xmx[JOB_MEMORY - OVERHEAD]G HaplotypeCaller \
+    -R REFERENCE_FASTA \
+    -I INPUT_BAM \
+    -L INTERVAL_FILE \
+    -L FILTER_INTERVALS -isr INTERVAL_SetRule -ip INTERVAL_Padding \ # Optional
+    -D DBSNP_VCF \
+    -ERC ERC \
+    --EXTRA_ARGUMENTS \
+    -O OUTPUT \
+```
+### Running haplotypeCaller RNA mode
+
+```
+    set -euo pipefail
+
+    gatk --java-options -Xmx[JOB_MEMORY - OVERHEAD]G HaplotypeCaller \
+    -R REFERENCE_FASTA \
+    -I INPUT_BAM \
+    -L INTERVAL_FILE \
+    -L FILTER_INTERVALS -isr INTERVAL_SetRule -ip INTERVAL_Padding \ # Optional
+    -D DBSNP_VCF \
+    -ERC ERC \
+    --dont-use-soft-clipped-bases \
+    --standard-min-confidence-threshold-for-calling 20 \
+    --max-reads-per-alignment-start 0 \
+    --G StandardAnnotation \
+    -G StandardHCAnnotation \
+    --EXTRA_ARGUMENTS \
+    -O OUTPUT \
 ```
 
 ### Merging vcf files
