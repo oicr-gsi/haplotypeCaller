@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 2.3.0 - 2025-03-04
 ### Removed
-- Revmoved String erc = "GVCF" from the task and now is controlled dinamically via ERC flag
+- Removed String erc = "GVCF" from the task and now is controlled dinamically via ERC flag
 
 ### Changed
 - The output file extension now conditionally depends on the ERC flag
