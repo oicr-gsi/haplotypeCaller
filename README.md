@@ -108,7 +108,7 @@ Output | Type | Description | Labels
      --dont-use-soft-clipped-bases \
      --standard-min-confidence-threshold-for-calling 20 \
      --max-reads-per-alignment-start 0 \
-     --G StandardAnnotation \
+     -G StandardAnnotation \
      -G StandardHCAnnotation \
      --EXTRA_ARGUMENTS \
      -O OUTPUT \
