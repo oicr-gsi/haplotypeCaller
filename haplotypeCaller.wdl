@@ -14,6 +14,8 @@ workflow haplotypeCaller {
     String outputFileNamePrefix = basename(bam, ".bam")
     String reference
     String intervalsToParallelizeBy
+    Boolean rnaMode = false
+    Boolean GVCF = true
   }
   parameter_meta {
       bai: "The index for the BAM file to be used."
@@ -22,10 +24,12 @@ workflow haplotypeCaller {
       reference: "Assembly id, i.e. hg38"
       outputFileNamePrefix: "Prefix for output file."
       intervalsToParallelizeBy: "Comma separated list of intervals to split by (e.g. chr1,chr2,chr3,chr4)."
+      rnaMode: "flag to indicate whether to run RNA sequencing data. Default is false (DNA mode)."
+      GVCF: "flag to indicated whether the output is VCF or GVCF (default)." 
   }
 
   meta {
-      author: "Andre Masella, Xuemei Luo"
+      author: "Andre Masella, Xuemei Luo, Monica L. Rojas-Pena"
       description: "Workflow to run the GATK Haplotype Caller"
       dependencies: [{
           name: "GATK4",
@@ -69,14 +73,18 @@ workflow haplotypeCaller {
          outputFileNamePrefix = outputFileNamePrefix,
          modules  = resources[reference].modules,
          refFasta = resources[reference].refFasta,
-         dbsnpFilePath = resources[reference].dbsnpFilePath
+         dbsnpFilePath = resources[reference].dbsnpFilePath,
+         rnaMode = rnaMode,
+         GVCF = GVCF
      }
   }
 
   call mergeGVCFs {
     input:
       outputFileNamePrefix = outputFileNamePrefix,
-      vcfs = callHaplotypes.output_vcf
+      vcfs = callHaplotypes.output_vcf,
+      rnaMode = rnaMode,
+      GVCF = GVCF
   }
   output {
     File outputVcf = mergeGVCFs.mergedVcf
@@ -127,7 +135,6 @@ task callHaplotypes {
     String? filterIntervals
     Int intervalPadding = 100
     String intervalSetRule = "INTERSECTION"
-    String erc = "GVCF"
     String modules
     String refFasta
     String outputFileNamePrefix
@@ -135,9 +142,13 @@ task callHaplotypes {
     Int overhead = 6
     Int cores = 1
     Int timeout = 72
+    Boolean rnaMode
+    Boolean GVCF
   }
  
-  String outputName = "~{outputFileNamePrefix}.~{interval}.g.vcf.gz"
+
+String outputName = "~{outputFileNamePrefix}~{interval}~{if GVCF then '.g.vcf.gz' else '.vcf.gz'}"
+
 
   command <<<
     set -euo pipefail
@@ -147,11 +158,17 @@ task callHaplotypes {
       -R ~{refFasta} \
       -I ~{bam} \
       -L ~{interval} \
-      ~{if defined(filterIntervals) then "-L ~{filterIntervals} -isr ~{intervalSetRule} -ip ~{intervalPadding}" else ""} \
+      ~{if defined(filterIntervals) 
+      then "-L ~{filterIntervals} -isr ~{intervalSetRule} -ip ~{intervalPadding}" 
+      else ""} \
       -D ~{dbsnpFilePath} \
-      -ERC ~{erc} ~{extraArgs} \
+      ~{if rnaMode then "--dont-use-soft-clipped-bases --standard-min-confidence-threshold-for-calling 20 --max-reads-per-alignment-start 0 -G StandardAnnotation -G StandardHCAnnotation" 
+      else ""} \
+      ~{if GVCF then "-ERC GVCF" else "-ERC NONE"} \
+      ~{extraArgs} \
       -O "~{outputName}"
   >>>
+
 
   output {
     File output_vcf = "~{outputName}"
@@ -173,7 +190,6 @@ task callHaplotypes {
     intervalPadding: "The number of bases of padding to add to each interval."
     intervalSetRule: "Set merging approach to use for combining interval inputs."
     interval: "The interval (chromosome) for this shard to work on."
-    erc: "Mode for emitting reference confidence scores."
     modules: "Required environment modules."
     refFasta: "The file path to the reference genome."
     outputFileNamePrefix: "Prefix for output file."
@@ -181,6 +197,8 @@ task callHaplotypes {
     overhead: "Java overhead memory (in GB). jobMemory - overhead == java Xmx/heap memory."
     cores: "The number of cores to allocate to the job."
     timeout: "Maximum amount of time (in hours) the task can run for."
+    rnaMode: "flag to indicate whether to run RNA sequencing data. Default is false (DNA mode)."
+    GVCF: "flag to indicated whether the output is VCF or GVCF (default)."
   }
   meta {
       output_meta: {
@@ -198,9 +216,11 @@ task mergeGVCFs {
     Int overhead = 6
     Int cores = 1
     Int timeout = 24
+    Boolean rnaMode
+    Boolean GVCF
   }
 
-  String outputName = "~{outputFileNamePrefix}.g.vcf.gz"
+  String outputName = "~{outputFileNamePrefix}" + (if GVCF then ".g.vcf.gz" else ".vcf.gz")
 
   command <<<
     set -euo pipefail
@@ -239,5 +259,3 @@ task mergeGVCFs {
   }
 
 }
-
-

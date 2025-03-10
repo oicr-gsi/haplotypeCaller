@@ -2,6 +2,8 @@
 
 Workflow to run the GATK Haplotype Caller
 
+## Overview
+
 ## Dependencies
 
 * [GATK4](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller)
@@ -31,6 +33,8 @@ Parameter|Value|Default|Description
 ---|---|---|---
 `filterIntervals`|String?|None|Path to a BED file that restricts calling to only the regions in the file.
 `outputFileNamePrefix`|String|basename(bam,".bam")|Prefix for output file.
+`rnaMode`|Boolean|false|flag to indicate whether to run RNA sequencing data. Default is false (DNA mode).
+`GVCF`|Boolean|true|flag to indicated whether the output is VCF or GVCF (default).
 
 
 #### Optional task parameters:
@@ -43,7 +47,6 @@ Parameter|Value|Default|Description
 `callHaplotypes.extraArgs`|String?|None|Additional arguments to be passed directly to the command.
 `callHaplotypes.intervalPadding`|Int|100|The number of bases of padding to add to each interval.
 `callHaplotypes.intervalSetRule`|String|"INTERSECTION"|Set merging approach to use for combining interval inputs.
-`callHaplotypes.erc`|String|"GVCF"|Mode for emitting reference confidence scores.
 `callHaplotypes.jobMemory`|Int|24|Memory allocated to job (in GB).
 `callHaplotypes.overhead`|Int|6|Java overhead memory (in GB). jobMemory - overhead == java Xmx/heap memory.
 `callHaplotypes.cores`|Int|1|The number of cores to allocate to the job.
@@ -63,44 +66,64 @@ Output | Type | Description | Labels
 
 
 ## Commands
-This section lists commands run by haplotypeCaller workflow
+ This section lists commands run by haplotypeCaller workflow
  
-* Running haplotypeCaller
+ * Running haplotypeCaller
  
-Workflow to run the GATK Haplotype Caller
+ Workflow to run the GATK Haplotype Caller
  
-### Parsing intervals
+ ### Parsing intervals
  
-```
+ ```
      echo INTERVALS_TO_PARALLELIZE_BY | tr 'LINE_SEPARATOR' '\n'
-```
+ ```
  
-### Running haplotypeCaller
+ ### Running haplotypeCaller DNA mode
  
-```
+ ```
      set -euo pipefail
  
-     gatk --java-options -Xmx[JOB_MEMORY - OVERHEAD]G 
-        HaplotypeCaller 
-     -R REFERENCE_FASTA
-     -I INPUT_BAM
-     -L INTERVAL_FILE
-     -L FILTER_INTERVALS -isr INTERVAL_SetRule -ip INTERVAL_Padding # Optional
-     -D DBSNP_VCF
-     -ERC ERC EXTRA_ARGUMENTS
-     -O OUTPUT
-```
+     gatk --java-options -Xmx[JOB_MEMORY - OVERHEAD]G HaplotypeCaller \
+     -R REFERENCE_FASTA \
+     -I INPUT_BAM \
+     -L INTERVAL_FILE \
+     -L FILTER_INTERVALS -isr INTERVAL_SetRule -ip INTERVAL_Padding \ # Optional
+     -D DBSNP_VCF \
+     -ERC ERC \
+     --EXTRA_ARGUMENTS \
+     -O OUTPUT \
+ ```
+ ### Running haplotypeCaller RNA mode
  
-### Merging vcf files
+ ```
+     set -euo pipefail
  
-```
+     gatk --java-options -Xmx[JOB_MEMORY - OVERHEAD]G HaplotypeCaller \
+     -R REFERENCE_FASTA \
+     -I INPUT_BAM \
+     -L INTERVAL_FILE \
+     -L FILTER_INTERVALS -isr INTERVAL_SetRule -ip INTERVAL_Padding \ # Optional
+     -D DBSNP_VCF \
+     -ERC ERC \
+     --dont-use-soft-clipped-bases \
+     --standard-min-confidence-threshold-for-calling 20 \
+     --max-reads-per-alignment-start 0 \
+     -G StandardAnnotation \
+     -G StandardHCAnnotation \
+     --EXTRA_ARGUMENTS \
+     -O OUTPUT \
+ ```
+ 
+ ### Merging vcf files
+ 
+ ```
      set -euo pipefail
  
      gatk --java-options "-Xmx[JOB_MEMORY - OVERHEAD]G" MergeVcfs
      -I VCF_FILES
      -O OUTPUT
-```
-## Support
+ ```
+ ## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
 
