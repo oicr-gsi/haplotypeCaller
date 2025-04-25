@@ -30,7 +30,7 @@ workflow haplotypeCaller {
 
   meta {
       author: "Andre Masella, Xuemei Luo, Monica L. Rojas-Pena"
-      description: "Workflow to run the GATK Haplotype Caller"
+      description: "Workflow to run the GATK Haplotype Caller, a tool from GATK suite capable of calling SNPs and indels simultaneously via local de-novo assembly of haplotypes in an active region. The workflow accepts bam files as the main input, generates vcf and gvcf files. Annotates variants with dbSNP information, when available. Supports RNA mode."
       dependencies: [{
           name: "GATK4",
           url: "https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller"
