@@ -3,7 +3,7 @@
         "arguments": {
             "haplotypeCaller.bai": {
                 "contents": {
-                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bai",
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/test_inputs/Test01.sorted.filter.deduped.realigned.recal.bai",
                     "externalIds": [
                         {
                             "id": "TEST",
@@ -15,7 +15,7 @@
             },
             "haplotypeCaller.bam": {
                 "contents": {
-                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bam",
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/test_inputs/Test01.sorted.filter.deduped.realigned.recal.bam",
                     "externalIds": [
                         {
                             "id": "TEST",
@@ -42,7 +42,7 @@
             "haplotypeCaller.mergeGVCFs.modules": "gatk/4.2.6.1",
             "haplotypeCaller.mergeGVCFs.overhead": null,
             "haplotypeCaller.mergeGVCFs.timeout": null,
-            "haplotypeCaller.outputFileNamePrefix": "PCSI0022P",
+            "haplotypeCaller.outputFileNamePrefix": "Test01",
             "haplotypeCaller.reference": "hg19",
             "haplotypeCaller.splitStringToArray.cores": null,
             "haplotypeCaller.splitStringToArray.jobMemory": null,
@@ -79,7 +79,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.2.1/output_metrics/HC_no_intervals.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.2.1/output_metrics/workflow_test_01.metrics",
                 "type": "script"
             }
         ]
@@ -88,7 +88,7 @@
         "arguments": {
             "haplotypeCaller.bai": {
                 "contents": {
-                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bai",
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/test_inputs/Test01.sorted.filter.deduped.realigned.recal.bai",
                     "externalIds": [
                         {
                             "id": "TEST",
@@ -100,7 +100,7 @@
             },
             "haplotypeCaller.bam": {
                 "contents": {
-                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/PCSI0022P.sorted.filter.deduped.realigned.recal.bam",
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/test_inputs/Test01.sorted.filter.deduped.realigned.recal.bam",
                     "externalIds": [
                         {
                             "id": "TEST",
@@ -120,7 +120,7 @@
             "haplotypeCaller.callHaplotypes.overhead": null,
             "haplotypeCaller.callHaplotypes.refFasta": null,
             "haplotypeCaller.callHaplotypes.timeout": null,
-            "haplotypeCaller.filterIntervals": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/PCSI0022.val.bed",
+            "haplotypeCaller.filterIntervals": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/test_inputs/Test01.val.bed",
             "haplotypeCaller.intervalsToParallelizeBy": "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr9,chr10,chr11,chr12,chr14,chr16,chr17,chr18,chr19,chrX",
             "haplotypeCaller.mergeGVCFs.cores": null,
             "haplotypeCaller.mergeGVCFs.jobMemory": null,
@@ -164,7 +164,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.2.1/output_metrics/HC_with_intervals.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.2.1/output_metrics/workflow_test_02.metrics",
                 "type": "script"
             }
         ]
@@ -173,7 +173,7 @@
         "arguments": {
             "haplotypeCaller.bai": {
                 "contents": {
-                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/SWID_15613141_OCT_011493_Lv_P_PE_265_WT_191213_M00146_0140_000000000-D7W78_CGCTCATT-CCTATCCT_L001.Aligned.sortedByCoord.out.tiny.sorted.bam.bai",
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/test_inputs/Test02.Aligned.sortedByCoord.out.tiny.sorted.bam.bai",
                     "externalIds": [
                         {
                             "id": "TEST",
@@ -185,7 +185,7 @@
             },
             "haplotypeCaller.bam": {
                 "contents": {
-                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/workflow/development/input_data/SWID_15613141_OCT_011493_Lv_P_PE_265_WT_191213_M00146_0140_000000000-D7W78_CGCTCATT-CCTATCCT_L001.Aligned.sortedByCoord.out.tiny.sorted.bam",
+                    "configuration": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/test_inputs/Test02.Aligned.sortedByCoord.out.tiny.sorted.bam",
                     "externalIds": [
                         {
                             "id": "TEST",
@@ -212,7 +212,7 @@
             "haplotypeCaller.mergeGVCFs.modules": "gatk/4.2.6.1",
             "haplotypeCaller.mergeGVCFs.overhead": null,
             "haplotypeCaller.mergeGVCFs.timeout": null,
-            "haplotypeCaller.outputFileNamePrefix": "SWID_15613141",
+            "haplotypeCaller.outputFileNamePrefix": "Test02",
             "haplotypeCaller.reference": "hg38",
             "haplotypeCaller.splitStringToArray.cores": null,
             "haplotypeCaller.splitStringToArray.jobMemory": null,
@@ -249,7 +249,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.2.1/output_metrics/HC_RNA_no_intervals.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/GATKHaplotypeCaller/2.2.1/output_metrics/workflow_test_03.metrics",
                 "type": "script"
             }
         ]
