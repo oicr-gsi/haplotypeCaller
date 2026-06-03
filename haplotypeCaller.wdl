@@ -48,13 +48,20 @@ workflow haplotypeCaller {
   }
 
   Map[String,genomicResources] resources = {
-    "hg19": {"modules":  "gatk/4.2.6.1 hg19/p13 hg19-dbsnp-leftaligned/138",
-             "refFasta": "$HG19_ROOT/hg19_random.fa",
-             "dbsnpFilePath": "$HG19_DBSNP_LEFTALIGNED_ROOT/dbsnp_138.hg19.leftAligned.vcf.gz"
+    "hg19": {
+      "modules":  "gatk/4.2.6.1 hg19/p13 hg19-dbsnp-leftaligned/138",
+      "refFasta": "$HG19_ROOT/hg19_random.fa",
+      "dbsnpFilePath": "$HG19_DBSNP_LEFTALIGNED_ROOT/dbsnp_138.hg19.leftAligned.vcf.gz"
     },
-    "hg38": {"modules":   "gatk/4.2.6.1 hg38/p12 hg38-dbsnp/138",
-             "refFasta":  "$HG38_ROOT/hg38_random.fa",
-             "dbsnpFilePath": "$HG38_DBSNP_ROOT/dbsnp_138.hg38.vcf.gz"
+    "hg38": {
+      "modules":   "gatk/4.2.6.1 hg38/p12 hg38-dbsnp/138",
+      "refFasta":  "$HG38_ROOT/hg38_random.fa",
+      "dbsnpFilePath": "$HG38_DBSNP_ROOT/dbsnp_138.hg38.vcf.gz"
+    },
+    "hg38_noAlt": {
+      "modules": "gatk/4.2.6.1 hg38-noalt/p12 hg38-noalt-dbsnp/138",
+      "refFasta":  "$HG38_NOALT_ROOT/hg38_noAlt.fa",
+      "dbsnpFilePath": "$HG38_NOALT_DBSNP_ROOT/dbsnp_138.hg38_noAlt.vcf.gz"
     }
   }
 
